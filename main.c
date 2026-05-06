@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include<gtk/gtk.h>
 
-struct windowSolve {
+struct windowSolver {
     GtkWidget *window;
     GtkWidget *textviewQuestion;
     struct buttonOption {
@@ -11,6 +11,17 @@ struct windowSolve {
         GtkWidget *D;
     }buttonOption;
 };
+
+struct windowMaker {
+    GtkWidget *window;
+    GtkWidget *textviewQuestion;
+    struct entryOption {
+        GtkWidget *A;
+        GtkWidget *B;
+        GtkWidget *C;
+        GtkWidget *D;
+    }entryOption;
+}windowMaker;
 
 static void activate (GtkApplication *app,gpointer user_data) {
 
