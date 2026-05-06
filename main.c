@@ -1,8 +1,19 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include<gtk/gtk.h>
 
+struct windowSolve {
+    GtkWidget *window;
+    GtkWidget *textviewQuestion;
+    struct buttonOption {
+        GtkWidget *A;
+        GtkWidget *B;
+        GtkWidget *C;
+        GtkWidget *D;
+    }buttonOption;
+};
+
 static void activate (GtkApplication *app,gpointer user_data) {
+
 
 
 }
