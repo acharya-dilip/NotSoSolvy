@@ -7,3 +7,4 @@
 
 #endif //NOTSOSOLVY_MAKER_H
 
+void openMaker();

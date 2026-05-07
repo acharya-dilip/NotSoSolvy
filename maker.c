@@ -16,3 +16,9 @@ struct windowMaker {
         GtkWidget *D;
     }entryOption;
 }windowMaker;
+
+void openMaker() {
+
+
+
+}
