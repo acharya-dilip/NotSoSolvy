@@ -10,12 +10,12 @@
 struct windowMaker {
     GtkWidget *window;
     GtkWidget *textviewQuestion;
-    struct option {
+    struct textViewOption {
         GtkWidget *A;
         GtkWidget *B;
         GtkWidget *C;
         GtkWidget *D;
-    }textviewOption;
+    }option;
     int answer;
 }maker;
 
@@ -141,12 +141,33 @@ struct dataToStore {
 
 void sendToStore() {
 
-    //Extracts text from the textview
-    GtkTextBuffer *question = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maker.textviewQuestion));
+    //Extracts text from the textviews and stores in the respective variables in the struct
     GtkTextIter start, end;
+
+    GtkTextBuffer *question = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maker.textviewQuestion));
     gtk_text_buffer_get_start_iter(question,&start);
     gtk_text_buffer_get_end_iter(question,&end);
     dataToStore.question=gtk_text_buffer_get_text(question,&start,&end,FALSE);
+
+    GtkTextBuffer *optionA = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maker.option.A));
+    gtk_text_buffer_get_start_iter(question,&start);
+    gtk_text_buffer_get_end_iter(question,&end);
+    dataToStore.option.A=gtk_text_buffer_get_text(optionA,&start,&end,FALSE);
+
+    GtkTextBuffer *optionB = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maker.option.B));
+    gtk_text_buffer_get_start_iter(question,&start);
+    gtk_text_buffer_get_end_iter(question,&end);
+    dataToStore.option.B=gtk_text_buffer_get_text(optionB,&start,&end,FALSE);
+
+    GtkTextBuffer *optionC = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maker.option.C));
+    gtk_text_buffer_get_start_iter(question,&start);
+    gtk_text_buffer_get_end_iter(question,&end);
+    dataToStore.option.C=gtk_text_buffer_get_text(optionC,&start,&end,FALSE);
+
+    GtkTextBuffer *optionD = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maker.option.D));
+    gtk_text_buffer_get_start_iter(question,&start);
+    gtk_text_buffer_get_end_iter(question,&end);
+    dataToStore.option.D=gtk_text_buffer_get_text(optionD,&start,&end,FALSE);
 
 }
 
@@ -178,30 +199,30 @@ void openMaker() {
 
     //text views for entering options
 
-    maker.textviewOption.A = gtk_text_view_new();
+    maker.option.A = gtk_text_view_new();
     gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(maker.textviewQuestion),GTK_WRAP_WORD);
-    gtk_grid_attach(GTK_GRID(gridParent),maker.textviewOption.A,0,5,6,4);
-    gtk_widget_set_size_request(maker.textviewOption.A,385,120);
-    gtk_widget_set_margin_bottom(maker.textviewOption.A,10);
-    gtk_widget_set_margin_end(maker.textviewOption.A,10);
+    gtk_grid_attach(GTK_GRID(gridParent),maker.option.A,0,5,6,4);
+    gtk_widget_set_size_request(maker.option.A,385,120);
+    gtk_widget_set_margin_bottom(maker.option.A,10);
+    gtk_widget_set_margin_end(maker.option.A,10);
 
-    maker.textviewOption.B = gtk_text_view_new();
+    maker.option.B = gtk_text_view_new();
     gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(maker.textviewQuestion),GTK_WRAP_WORD);
-    gtk_grid_attach(GTK_GRID(gridParent),maker.textviewOption.B,6,5,6,4);
-    gtk_widget_set_size_request(maker.textviewOption.B,385,120);
-    gtk_widget_set_margin_bottom(maker.textviewOption.B,10);
+    gtk_grid_attach(GTK_GRID(gridParent),maker.option.B,6,5,6,4);
+    gtk_widget_set_size_request(maker.option.B,385,120);
+    gtk_widget_set_margin_bottom(maker.option.B,10);
 
 
-    maker.textviewOption.C = gtk_text_view_new();
+    maker.option.C = gtk_text_view_new();
     gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(maker.textviewQuestion),GTK_WRAP_WORD);
-    gtk_grid_attach(GTK_GRID(gridParent),maker.textviewOption.C,0,10,6,4);
-    gtk_widget_set_size_request(maker.textviewOption.C,385,120);
-    gtk_widget_set_margin_end(maker.textviewOption.C,10);
+    gtk_grid_attach(GTK_GRID(gridParent),maker.option.C,0,10,6,4);
+    gtk_widget_set_size_request(maker.option.C,385,120);
+    gtk_widget_set_margin_end(maker.option.C,10);
 
-    maker.textviewOption.D = gtk_text_view_new();
+    maker.option.D = gtk_text_view_new();
     gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(maker.textviewQuestion),GTK_WRAP_WORD);
-    gtk_grid_attach(GTK_GRID(gridParent),maker.textviewOption.D,6,10,6,4);
-    gtk_widget_set_size_request(maker.textviewOption.D,385,120);
+    gtk_grid_attach(GTK_GRID(gridParent),maker.option.D,6,10,6,4);
+    gtk_widget_set_size_request(maker.option.D,385,120);
 
 
     //The Buttons to choose the answer
