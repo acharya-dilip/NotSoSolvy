@@ -9,12 +9,12 @@
 struct windowMaker {
     GtkWidget *window;
     GtkWidget *textviewQuestion;
-    struct entryOption {
+    struct option {
         GtkWidget *A;
         GtkWidget *B;
         GtkWidget *C;
         GtkWidget *D;
-    }entryOption;
+    }textviewOption;
 }maker;
 
 void openMaker() {
@@ -37,11 +37,36 @@ void openMaker() {
     //Text view for entering the question
     maker.textviewQuestion = gtk_text_view_new();
     gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(maker.textviewQuestion),TRUE);
-    gtk_grid_attach(GTK_GRID(gridParent),maker.textviewQuestion,0,0,12,12);
+    gtk_grid_attach(GTK_GRID(gridParent),maker.textviewQuestion,0,0,12,4);
     gtk_widget_set_size_request(maker.textviewQuestion,780,260);
+    gtk_widget_set_margin_bottom(maker.textviewQuestion,10);
+
+    //text views for entering options
+
+    maker.textviewOption.A = gtk_text_view_new();
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(maker.textviewQuestion),TRUE);
+    gtk_grid_attach(GTK_GRID(gridParent),maker.textviewOption.A,0,5,6,4);
+    gtk_widget_set_size_request(maker.textviewOption.A,385,120);
+    gtk_widget_set_margin_bottom(maker.textviewOption.A,10);
+    gtk_widget_set_margin_end(maker.textviewOption.A,10);
+
+    maker.textviewOption.B = gtk_text_view_new();
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(maker.textviewQuestion),TRUE);
+    gtk_grid_attach(GTK_GRID(gridParent),maker.textviewOption.B,6,5,6,4);
+    gtk_widget_set_size_request(maker.textviewOption.B,385,120);
+    gtk_widget_set_margin_bottom(maker.textviewOption.B,10);
 
 
+    maker.textviewOption.C = gtk_text_view_new();
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(maker.textviewQuestion),TRUE);
+    gtk_grid_attach(GTK_GRID(gridParent),maker.textviewOption.C,0,10,6,4);
+    gtk_widget_set_size_request(maker.textviewOption.C,385,120);
+    gtk_widget_set_margin_end(maker.textviewOption.C,10);
 
+    maker.textviewOption.D = gtk_text_view_new();
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(maker.textviewQuestion),TRUE);
+    gtk_grid_attach(GTK_GRID(gridParent),maker.textviewOption.D,6,10,6,4);
+    gtk_widget_set_size_request(maker.textviewOption.D,385,120);
 
 
 }
