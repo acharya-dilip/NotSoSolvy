@@ -123,6 +123,13 @@ void filepathPrompt() {
 
 }
 
+void sendToStore() {
+
+
+
+}
+
+
 void openMaker() {
 
 
@@ -197,6 +204,7 @@ void openMaker() {
     //The Submit button to submit the MCQ and go on to the next one
     GtkWidget *buttonSubmit = gtk_button_new_with_label("Submit");
     gtk_grid_attach(GTK_GRID(gridParent),buttonSubmit,0,14,12,1);
+    g_signal_connect(buttonSubmit,"clicked",G_CALLBACK(sendToStore),NULL);
     gtk_widget_set_size_request(buttonSubmit,780,50);
     gtk_widget_set_margin_top(buttonSubmit,10);
 
