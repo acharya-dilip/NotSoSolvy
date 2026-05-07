@@ -14,6 +14,8 @@ link_directories(${GTK4_LIBRARY_DIRS})
 
 
 add_executable(NotSoSolvy main.c
+        maker.c
+        maker.h
 )
 
 target_link_libraries(${PROJECT_NAME}

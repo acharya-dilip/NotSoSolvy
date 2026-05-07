@@ -12,16 +12,6 @@ struct windowSolver {
     }buttonOption;
 }windowSolver;
 
-struct windowMaker {
-    GtkWidget *window;
-    GtkWidget *textviewQuestion;
-    struct entryOption {
-        GtkWidget *A;
-        GtkWidget *B;
-        GtkWidget *C;
-        GtkWidget *D;
-    }entryOption;
-}windowMaker;
 
 static void activate (GtkApplication *app,gpointer user_data) {
     // The window for the solver
