@@ -79,15 +79,22 @@ void openMaker() {
 
     //The Buttons to choose the answer
     radio.A = gtk_check_button_new();
+    gtk_grid_attach(GTK_GRID(gridParent),radio.A,0,5,1,1);
 
     radio.B = gtk_check_button_new();
-    gtk_check_button_set_group(GTK_CHECK_BUTTON(radio.A),GTK_CHECK_BUTTON(radio.B));
+    gtk_check_button_set_group(GTK_CHECK_BUTTON(radio.B),GTK_CHECK_BUTTON(radio.A));
+    gtk_grid_attach(GTK_GRID(gridParent),radio.B,6,5,1,1);
+
 
     radio.C = gtk_check_button_new();
-    gtk_check_button_set_group(GTK_CHECK_BUTTON(radio.A),GTK_CHECK_BUTTON(radio.C));
+    gtk_check_button_set_group(GTK_CHECK_BUTTON(radio.C),GTK_CHECK_BUTTON(radio.A));
+    gtk_grid_attach(GTK_GRID(gridParent),radio.C,0,10,1,1);
+
 
     radio.D = gtk_check_button_new();
-    gtk_check_button_set_group(GTK_CHECK_BUTTON(radio.A),GTK_CHECK_BUTTON(radio.D));
+    gtk_check_button_set_group(GTK_CHECK_BUTTON(radio.D),GTK_CHECK_BUTTON(radio.A));
+    gtk_grid_attach(GTK_GRID(gridParent),radio.D,6,10,1,1);
+
 
 
 
