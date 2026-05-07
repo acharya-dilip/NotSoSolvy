@@ -31,7 +31,11 @@ void filepathPrompt() {
     gtk_window_set_title(GTK_WINDOW(window), "Create Test");
     gtk_window_present(GTK_WINDOW(window));
 
-    //
+    //parent grid for the filepath window
+    GtkWidget *gridParent = gtk_grid_new();
+    gtk_window_set_child(GTK_WINDOW(window),gridParent);
+
+
 
 }
 
