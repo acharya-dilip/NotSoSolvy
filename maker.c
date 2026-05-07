@@ -25,12 +25,21 @@ struct radioCheck {
     GtkWidget *D;
 }radio;
 
+void filepathPrompt() {
+    //Window for a thing that prompts you to type out a filename and choose a filepath
+    GtkWidget *window = gtk_window_new();
+    gtk_window_set_title(GTK_WINDOW(window), "Create Test");
+    gtk_window_present(GTK_WINDOW(window));
+
+    //
+
+}
+
 void openMaker() {
 
     //Window for the mcqMaker
     maker.window = gtk_window_new();
     gtk_window_set_title(GTK_WINDOW(maker.window),"MCQ Maker");
-    gtk_window_set_default_size(GTK_WINDOW(maker.window),800,800);
     gtk_window_present(GTK_WINDOW(maker.window));
 
     //Init for a grid
@@ -100,8 +109,5 @@ void openMaker() {
     gtk_grid_attach(GTK_GRID(gridParent),buttonSubmit,0,14,12,1);
     gtk_widget_set_size_request(buttonSubmit,780,50);
     gtk_widget_set_margin_top(buttonSubmit,10);
-
-
-
 
 }
