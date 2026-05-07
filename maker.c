@@ -19,6 +19,11 @@ struct windowMaker {
 
 void openMaker() {
 
+    //Window for the mcqMaker
+    windowMaker.window = gtk_window_new();
+    gtk_window_set_title(GTK_WINDOW(windowMaker.window),"MCQ Maker");
+    gtk_window_set_default_size(GTK_WINDOW(windowMaker.window),800,800);
+    gtk_window_present(GTK_WINDOW(windowMaker.window));
 
 
 }
