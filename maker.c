@@ -123,9 +123,30 @@ void filepathPrompt() {
 
 }
 
+struct dataToStore {
+
+    char *question;
+
+    struct optionToStore {
+        char *A;
+        char *B;
+        char *C;
+        char *D;
+    }option;
+
+    int answer;
+
+}dataToStore;
+
+
 void sendToStore() {
 
-
+    //Extracts text from the textview
+    GtkTextBuffer *question = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maker.textviewQuestion));
+    GtkTextIter start, end;
+    gtk_text_buffer_get_start_iter(question,&start);
+    gtk_text_buffer_get_end_iter(question,&end);
+    dataToStore.question=gtk_text_buffer_get_text(question,&start,&end,FALSE);
 
 }
 
