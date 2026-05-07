@@ -25,6 +25,40 @@ struct radioCheck {
     GtkWidget *D;
 }radio;
 
+struct fileinfo {
+    char *name;
+    char *path;
+    struct widget {
+        GtkWidget *path;
+        GtkWidget *name;
+    }widget;
+}file;
+
+
+
+void setFilePath(GObject *source, GAsyncResult *res, gpointer user_data) {
+    //Fetches the file path
+    GtkFileDialog *dialogNav = GTK_FILE_DIALOG(source);
+    GFile *folder = gtk_file_dialog_select_folder_finish(dialogNav, res, NULL);
+    file.path = g_file_get_path(folder);
+
+
+}
+
+void dialogFilePath() {
+
+        //window for the dialog ig
+        GtkWindow *windowNav = GTK_WINDOW(NULL);
+        GtkFileDialog *dialogNav = gtk_file_dialog_new();
+
+        GFile *home = g_file_new_for_path(g_get_home_dir());
+        gtk_file_dialog_set_initial_folder(dialogNav, home);
+        g_object_unref(home);
+        gtk_file_dialog_select_folder(dialogNav, windowNav, NULL,setFilePath,windowNav);
+
+
+}
+
 void filepathPrompt() {
     //Window for a thing that prompts you to type out a filename and choose a filepath
     GtkWidget *window = gtk_window_new();
@@ -45,18 +79,18 @@ void filepathPrompt() {
     gtk_grid_attach(GTK_GRID(gridParent),labelFileName,0,0,1,1);
 
     //entry for filename
-    GtkWidget *entryFileName = gtk_entry_new();
-    gtk_grid_attach(GTK_GRID(gridParent),entryFileName,1,0,5,1);
-    gtk_widget_set_size_request(entryFileName,300,-1);
+    file.widget.name = gtk_entry_new();
+    gtk_grid_attach(GTK_GRID(gridParent),file.widget.name,1,0,5,1);
+    gtk_widget_set_size_request(file.widget.name,300,-1);
 
     //label for filePath
     GtkWidget *labelFilePath = gtk_label_new("Path:");
     gtk_grid_attach(GTK_GRID(gridParent),labelFilePath,0,1,1,1);
 
     //entry for filePath
-    GtkWidget *entryFilePath = gtk_entry_new();
-    gtk_grid_attach(GTK_GRID(gridParent),entryFilePath,1,1,4,1);
-    gtk_widget_set_size_request(entryFilePath,260,-1);
+    file.widget.path = gtk_entry_new();
+    gtk_grid_attach(GTK_GRID(gridParent),file.widget.path,1,1,4,1);
+    gtk_widget_set_size_request(file.widget.path,260,-1);
 
     //button to open a dialogbox to choose a path
     GtkWidget *buttonFilePath = gtk_button_new_with_label("🗃️");
