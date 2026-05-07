@@ -15,7 +15,15 @@ struct windowMaker {
         GtkWidget *C;
         GtkWidget *D;
     }textviewOption;
+    int answer;
 }maker;
+
+struct radioCheck {
+    GtkWidget *A;
+    GtkWidget *B;
+    GtkWidget *C;
+    GtkWidget *D;
+}radio;
 
 void openMaker() {
 
@@ -67,6 +75,20 @@ void openMaker() {
     gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(maker.textviewQuestion),GTK_WRAP_WORD);
     gtk_grid_attach(GTK_GRID(gridParent),maker.textviewOption.D,6,10,6,4);
     gtk_widget_set_size_request(maker.textviewOption.D,385,120);
+
+
+    //The Buttons to choose the answer
+    radio.A = gtk_check_button_new();
+
+    radio.B = gtk_check_button_new();
+    gtk_check_button_set_group(GTK_CHECK_BUTTON(radio.A),GTK_CHECK_BUTTON(radio.B));
+
+    radio.C = gtk_check_button_new();
+    gtk_check_button_set_group(GTK_CHECK_BUTTON(radio.A),GTK_CHECK_BUTTON(radio.C));
+
+    radio.D = gtk_check_button_new();
+    gtk_check_button_set_group(GTK_CHECK_BUTTON(radio.A),GTK_CHECK_BUTTON(radio.D));
+
 
 
 }
