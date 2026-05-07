@@ -5,6 +5,7 @@
 #include "maker.h"
 #include <stdio.h>
 #include <gtk/gtk.h>
+#include <string.h>
 
 struct windowMaker {
     GtkWidget *window;
@@ -60,6 +61,11 @@ void dialogFilePath() {
 
 }
 
+void saveFileName() {
+    //Stores the files name
+    strcpy(file.name,gtk_editable_get_text(GTK_EDITABLE(file.widget.name)));
+}
+
 void filepathPrompt() {
     //Window for a thing that prompts you to type out a filename and choose a filepath
     GtkWidget *window = gtk_window_new();
@@ -102,6 +108,7 @@ void filepathPrompt() {
     //submit button for file info
     GtkWidget *buttonSubmit = gtk_button_new_with_label("Submit");
     gtk_grid_attach(GTK_GRID(gridParent),buttonSubmit,0,3,8,1);
+    g_signal_connect(buttonSubmit,"clicked",G_CALLBACK(saveFileName),NULL);
     gtk_widget_set_size_request(buttonSubmit,380,-1);
 
 
