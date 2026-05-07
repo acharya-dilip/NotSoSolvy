@@ -35,7 +35,21 @@ void filepathPrompt() {
     GtkWidget *gridParent = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(window),gridParent);
 
+    //label for filename
+    GtkWidget *labelFileName = gtk_label_new("Filename:");
+    gtk_grid_attach(GTK_GRID(gridParent),labelFileName,0,0,1,1);
 
+    //entry for filename
+    GtkWidget *entryFileName = gtk_entry_new();
+    gtk_grid_attach(GTK_GRID(gridParent),entryFileName,1,0,5,1);
+
+    //label for filePath
+    GtkWidget *labelFilePath = gtk_label_new("Path:");
+    gtk_grid_attach(GTK_GRID(gridParent),labelFilePath,0,0,1,1);
+
+    //entry for filePath
+    GtkWidget *entryFilePath = gtk_entry_new();
+    gtk_grid_attach(GTK_GRID(gridParent),entryFilePath,1,0,5,1);
 
 }
 
