@@ -68,6 +68,8 @@ void saveFileName() {
     //Stores the files name
     file.name = gtk_editable_get_text(GTK_EDITABLE(file.widget.name));
 
+    //printf("\n the file name is  %s ",file.name);
+
     //close the window
     gtk_window_destroy(GTK_WINDOW(windowFilePathPrompt));
 
