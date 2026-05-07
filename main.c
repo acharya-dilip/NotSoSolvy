@@ -34,6 +34,11 @@ static void activate (GtkApplication *app,gpointer user_data) {
     GtkWidget *headerbar = gtk_header_bar_new();
     gtk_window_set_titlebar(GTK_WINDOW(windowSolver.window),headerbar);
 
+    //Button to open the maker window (windowMaker)
+    GtkWidget *buttonMaker = gtk_button_new_with_label("📄");
+    gtk_header_bar_pack_start(GTK_HEADER_BAR(headerbar),buttonMaker);
+
+
 
 }
 
