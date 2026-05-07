@@ -45,11 +45,15 @@ void filepathPrompt() {
 
     //label for filePath
     GtkWidget *labelFilePath = gtk_label_new("Path:");
-    gtk_grid_attach(GTK_GRID(gridParent),labelFilePath,0,0,1,1);
+    gtk_grid_attach(GTK_GRID(gridParent),labelFilePath,0,1,1,1);
 
     //entry for filePath
     GtkWidget *entryFilePath = gtk_entry_new();
-    gtk_grid_attach(GTK_GRID(gridParent),entryFilePath,1,0,5,1);
+    gtk_grid_attach(GTK_GRID(gridParent),entryFilePath,1,1,4,1);
+
+    //button to open a dialogbox to choose a path
+    GtkWidget *buttonFilePath = gtk_button_new_with_label("🗃️");
+    gtk_grid_attach(GTK_GRID(gridParent),buttonFilePath,6,1,1,1);
 
     //submit button for file info
     GtkWidget *buttonSubmit = gtk_button_new_with_label("Submit");
