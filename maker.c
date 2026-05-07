@@ -95,6 +95,12 @@ void openMaker() {
     gtk_check_button_set_group(GTK_CHECK_BUTTON(radio.D),GTK_CHECK_BUTTON(radio.A));
     gtk_grid_attach(GTK_GRID(gridParent),radio.D,6,10,1,1);
 
+    //The Submit button to submit the MCQ and go on to the next one
+    GtkWidget *buttonSubmit = gtk_button_new_with_label("Submit");
+    gtk_grid_attach(GTK_GRID(gridParent),buttonSubmit,0,14,12,1);
+    gtk_widget_set_size_request(buttonSubmit,780,50);
+    gtk_widget_set_margin_top(buttonSubmit,10);
+
 
 
 
