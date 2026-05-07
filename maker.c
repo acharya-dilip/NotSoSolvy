@@ -51,6 +51,11 @@ void filepathPrompt() {
     GtkWidget *entryFilePath = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryFilePath,1,0,5,1);
 
+    //submit button for file info
+    GtkWidget *buttonSubmit = gtk_button_new_with_label("Submit");
+    gtk_grid_attach(GTK_GRID(gridParent),buttonSubmit,2,0,6,1);
+
+
 }
 
 void openMaker() {
