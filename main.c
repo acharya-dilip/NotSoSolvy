@@ -24,14 +24,20 @@ struct windowMaker {
 }windowMaker;
 
 static void activate (GtkApplication *app,gpointer user_data) {
-
+    // The window for the solver
     windowSolver.window = gtk_application_window_new(app);
     gtk_window_set_title(GTK_WINDOW(windowSolver.window),"NotSoSolvy");
     gtk_window_set_default_size(GTK_WINDOW(windowSolver.window),800,800);
     gtk_window_present(GTK_WINDOW(windowSolver.window));
+
+    //Header bar for the buttons and stuff
+    GtkWidget *headerbar = gtk_header_bar_new();
+    gtk_window_set_titlebar(GTK_WINDOW(windowSolver.window),headerbar);
+
+
 }
 
-
+//Tje boilerplate code
 int main(int argc, char **argv) {
     GtkApplication *app;
     int status;
