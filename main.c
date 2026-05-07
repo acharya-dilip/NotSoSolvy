@@ -29,7 +29,7 @@ static void activate (GtkApplication *app,gpointer user_data) {
     //Button to open the maker window (windowMaker)
     GtkWidget *buttonMaker = gtk_button_new_with_label("📄");
     gtk_header_bar_pack_start(GTK_HEADER_BAR(headerbar),buttonMaker);
-    g_signal_connect(buttonMaker,"pressed",G_CALLBACK(openMaker),NULL);
+    g_signal_connect(buttonMaker,"clicked",G_CALLBACK(openMaker),NULL);
 
 
 }
