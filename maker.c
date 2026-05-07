@@ -41,6 +41,7 @@ void setFilePath(GObject *source, GAsyncResult *res, gpointer user_data) {
     GtkFileDialog *dialogNav = GTK_FILE_DIALOG(source);
     GFile *folder = gtk_file_dialog_select_folder_finish(dialogNav, res, NULL);
     file.path = g_file_get_path(folder);
+    gtk_editable_set_text(GTK_EDITABLE(file.widget.path),file.path);
 
 
 }
@@ -81,6 +82,7 @@ void filepathPrompt() {
     //entry for filename
     file.widget.name = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),file.widget.name,1,0,5,1);
+    gtk_editable_set_text(GTK_EDITABLE(file.widget.name),"Untitled");
     gtk_widget_set_size_request(file.widget.name,300,-1);
 
     //label for filePath
