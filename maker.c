@@ -29,11 +29,16 @@ void filepathPrompt() {
     //Window for a thing that prompts you to type out a filename and choose a filepath
     GtkWidget *window = gtk_window_new();
     gtk_window_set_title(GTK_WINDOW(window), "Create Test");
+    //gtk_window_set_default_size(GTK_WINDOW(window),400,200);
     gtk_window_present(GTK_WINDOW(window));
 
     //parent grid for the filepath window
     GtkWidget *gridParent = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(window),gridParent);
+    gtk_widget_set_margin_top(gridParent,10);
+    gtk_widget_set_margin_bottom(gridParent,10);
+    gtk_widget_set_margin_start(gridParent,10);
+    gtk_widget_set_margin_end(gridParent,10);
 
     //label for filename
     GtkWidget *labelFileName = gtk_label_new("Filename:");
@@ -42,6 +47,7 @@ void filepathPrompt() {
     //entry for filename
     GtkWidget *entryFileName = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryFileName,1,0,5,1);
+    gtk_widget_set_size_request(entryFileName,300,-1);
 
     //label for filePath
     GtkWidget *labelFilePath = gtk_label_new("Path:");
@@ -50,19 +56,23 @@ void filepathPrompt() {
     //entry for filePath
     GtkWidget *entryFilePath = gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryFilePath,1,1,4,1);
+    gtk_widget_set_size_request(entryFilePath,260,-1);
 
     //button to open a dialogbox to choose a path
     GtkWidget *buttonFilePath = gtk_button_new_with_label("🗃️");
-    gtk_grid_attach(GTK_GRID(gridParent),buttonFilePath,6,1,1,1);
+    gtk_grid_attach(GTK_GRID(gridParent),buttonFilePath,5,1,1,1);
 
     //submit button for file info
     GtkWidget *buttonSubmit = gtk_button_new_with_label("Submit");
-    gtk_grid_attach(GTK_GRID(gridParent),buttonSubmit,2,0,6,1);
+    gtk_grid_attach(GTK_GRID(gridParent),buttonSubmit,0,3,8,1);
+    gtk_widget_set_size_request(buttonSubmit,380,-1);
 
 
 }
 
 void openMaker() {
+
+
 
     //Window for the mcqMaker
     maker.window = gtk_window_new();
@@ -136,5 +146,8 @@ void openMaker() {
     gtk_grid_attach(GTK_GRID(gridParent),buttonSubmit,0,14,12,1);
     gtk_widget_set_size_request(buttonSubmit,780,50);
     gtk_widget_set_margin_top(buttonSubmit,10);
+
+    //Automatically opnes the filepath prompt after everything is the gui is loaded
+    filepathPrompt();
 
 }
