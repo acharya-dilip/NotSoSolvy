@@ -15,15 +15,18 @@ struct windowMaker {
         GtkWidget *C;
         GtkWidget *D;
     }entryOption;
-}windowMaker;
+}maker;
 
 void openMaker() {
 
     //Window for the mcqMaker
-    windowMaker.window = gtk_window_new();
-    gtk_window_set_title(GTK_WINDOW(windowMaker.window),"MCQ Maker");
-    gtk_window_set_default_size(GTK_WINDOW(windowMaker.window),800,800);
-    gtk_window_present(GTK_WINDOW(windowMaker.window));
+    maker.window = gtk_window_new();
+    gtk_window_set_title(GTK_WINDOW(maker.window),"MCQ Maker");
+    gtk_window_set_default_size(GTK_WINDOW(maker.window),800,800);
+    gtk_window_present(GTK_WINDOW(maker.window));
 
+    //Text view for entering the question
+    maker.textviewQuestion = gtk_text_view_new();
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(maker.textviewQuestion),TRUE);
 
 }
