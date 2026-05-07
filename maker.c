@@ -97,6 +97,7 @@ void filepathPrompt() {
     //button to open a dialogbox to choose a path
     GtkWidget *buttonFilePath = gtk_button_new_with_label("🗃️");
     gtk_grid_attach(GTK_GRID(gridParent),buttonFilePath,5,1,1,1);
+    g_signal_connect(buttonFilePath,"clicked",G_CALLBACK(dialogFilePath),NULL);
 
     //submit button for file info
     GtkWidget *buttonSubmit = gtk_button_new_with_label("Submit");
