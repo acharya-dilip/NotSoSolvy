@@ -61,21 +61,28 @@ void dialogFilePath() {
 
 }
 
+//Globalizing it because I need to close it from savefilename funct
+GtkWidget *windowFilePathPrompt;
+
 void saveFileName() {
     //Stores the files name
-    strcpy(file.name,gtk_editable_get_text(GTK_EDITABLE(file.widget.name)));
+    file.name = gtk_editable_get_text(GTK_EDITABLE(file.widget.name));
+
+    //close the window
+    gtk_window_destroy(GTK_WINDOW(windowFilePathPrompt));
+
 }
 
 void filepathPrompt() {
     //Window for a thing that prompts you to type out a filename and choose a filepath
-    GtkWidget *window = gtk_window_new();
-    gtk_window_set_title(GTK_WINDOW(window), "Create Test");
+    windowFilePathPrompt = gtk_window_new();
+    gtk_window_set_title(GTK_WINDOW(windowFilePathPrompt), "Create Test");
     //gtk_window_set_default_size(GTK_WINDOW(window),400,200);
-    gtk_window_present(GTK_WINDOW(window));
+    gtk_window_present(GTK_WINDOW(windowFilePathPrompt));
 
     //parent grid for the filepath window
     GtkWidget *gridParent = gtk_grid_new();
-    gtk_window_set_child(GTK_WINDOW(window),gridParent);
+    gtk_window_set_child(GTK_WINDOW(windowFilePathPrompt),gridParent);
     gtk_widget_set_margin_top(gridParent,10);
     gtk_widget_set_margin_bottom(gridParent,10);
     gtk_widget_set_margin_start(gridParent,10);
