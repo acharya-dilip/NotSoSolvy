@@ -10,13 +10,13 @@ void openMaker();
 
 typedef struct {
 
-    char *question;
+    char question[256];
 
     struct optionToStore {
-        char *A;
-        char *B;
-        char *C;
-        char *D;
+        char A[128];
+        char B[128];
+        char C[128];
+        char D[128];
     }option;
 
     int answer;

@@ -7,6 +7,8 @@
 #include <gtk/gtk.h>
 #include <string.h>
 
+#include "storeQuestion.h"
+
 struct windowMaker {
     GtkWidget *window;
     GtkWidget *textviewQuestion;
@@ -134,27 +136,27 @@ void sendToStore() {
     GtkTextBuffer *question = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maker.textviewQuestion));
     gtk_text_buffer_get_start_iter(question,&start);
     gtk_text_buffer_get_end_iter(question,&end);
-    dataToStore.question=gtk_text_buffer_get_text(question,&start,&end,FALSE);
+    strcpy(dataToStore.question,gtk_text_buffer_get_text(question,&start,&end,FALSE));
 
     GtkTextBuffer *optionA = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maker.option.A));
     gtk_text_buffer_get_start_iter(question,&start);
     gtk_text_buffer_get_end_iter(question,&end);
-    dataToStore.option.A=gtk_text_buffer_get_text(optionA,&start,&end,FALSE);
+    strcpy(dataToStore.option.A,gtk_text_buffer_get_text(optionA,&start,&end,FALSE));
 
     GtkTextBuffer *optionB = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maker.option.B));
     gtk_text_buffer_get_start_iter(question,&start);
     gtk_text_buffer_get_end_iter(question,&end);
-    dataToStore.option.B=gtk_text_buffer_get_text(optionB,&start,&end,FALSE);
+    strcpy(dataToStore.option.B,gtk_text_buffer_get_text(optionB,&start,&end,FALSE));
 
     GtkTextBuffer *optionC = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maker.option.C));
     gtk_text_buffer_get_start_iter(question,&start);
     gtk_text_buffer_get_end_iter(question,&end);
-    dataToStore.option.C=gtk_text_buffer_get_text(optionC,&start,&end,FALSE);
+    strcpy(dataToStore.option.C,gtk_text_buffer_get_text(optionC,&start,&end,FALSE));
 
     GtkTextBuffer *optionD = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maker.option.D));
     gtk_text_buffer_get_start_iter(question,&start);
     gtk_text_buffer_get_end_iter(question,&end);
-    dataToStore.option.D=gtk_text_buffer_get_text(optionD,&start,&end,FALSE);
+    strcpy(dataToStore.option.D,gtk_text_buffer_get_text(optionD,&start,&end,FALSE));
 
 
     //Checks what the selected answer is
@@ -169,7 +171,11 @@ void sendToStore() {
     }
 
     //Prepares the fileinfo for the file sppecs where the data is to be stored
-    snprintf(dataToStore.fileInfo,sizeof(dataToStore.fileInfo),"%s/%s",file.path,file.name);
+    snprintf(dataToStore.fileInfo,sizeof(dataToStore.fileInfo),"%s/%s.mcq",file.path,file.name);
+    //Executes the storing of MCQ's
+    storeQuestion();
+
+
 
 }
 
