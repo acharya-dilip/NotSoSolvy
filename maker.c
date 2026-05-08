@@ -69,7 +69,7 @@ void saveFileName() {
     file.name = gtk_editable_get_text(GTK_EDITABLE(file.widget.name));
 
     //printf("\n the file name is  %s ",file.name);
-
+    //printf("\n %s",file.path);
     //close the window
     gtk_window_destroy(GTK_WINDOW(windowFilePathPrompt));
 
@@ -135,7 +135,7 @@ struct dataToStore {
     }option;
 
     int answer;
-
+    char *fileInfo;
 }dataToStore;
 
 
@@ -180,6 +180,9 @@ void sendToStore() {
     }else {
         dataToStore.answer = 4;
     }
+
+    //Prepares the fileinfo for the file sppecs where the data is to be stored
+    snprintf(dataToStore.fileInfo,sizeof(dataToStore.fileInfo),"%s/%s",file.path,file.name);
 
 }
 
