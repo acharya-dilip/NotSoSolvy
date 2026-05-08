@@ -14,8 +14,19 @@ struct windowSolver {
     }buttonOption;
 }windowSolver;
 
+char *filePath;
+
+void on_file_selected(GObject *source, GAsyncResult *res, gpointer user_data) {
+    GtkFileDialog *dialog = GTK_FILE_DIALOG(source);
+    GFile *file = gtk_file_dialog_open_finish(dialog, res, NULL);
+    filePath = g_file_get_path(file);
+    //printf("FilePath = %s ",filePath);
+}
+
 void dialogNavToTest() {
 
+        GtkFileDialog *dialog = gtk_file_dialog_new();
+        gtk_file_dialog_open(dialog, NULL, NULL, on_file_selected, NULL);
 
 }
 
