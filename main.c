@@ -14,6 +14,10 @@ struct windowSolver {
     }buttonOption;
 }windowSolver;
 
+void dialogNavToTest() {
+
+
+}
 
 static void activate (GtkApplication *app,gpointer user_data) {
     // The window for the solver
@@ -31,7 +35,10 @@ static void activate (GtkApplication *app,gpointer user_data) {
     gtk_header_bar_pack_start(GTK_HEADER_BAR(headerbar),buttonMaker);
     g_signal_connect(buttonMaker,"clicked",G_CALLBACK(openMaker),NULL);
 
-
+    //Button to open the dialogbox to choose test file
+    GtkWidget *buttonBrowse = gtk_button_new_with_label("📂");
+    gtk_header_bar_pack_start(GTK_HEADER_BAR(headerbar),buttonBrowse);
+    g_signal_connect(buttonBrowse,"clicked",G_CALLBACK(dialogNavToTest),NULL);
 
 }
 
