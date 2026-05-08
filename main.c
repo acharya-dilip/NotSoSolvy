@@ -32,6 +32,7 @@ static void activate (GtkApplication *app,gpointer user_data) {
     g_signal_connect(buttonMaker,"clicked",G_CALLBACK(openMaker),NULL);
 
 
+
 }
 
 //Tje boilerplate code

@@ -123,6 +123,7 @@ void filepathPrompt() {
     gtk_widget_set_size_request(buttonSubmit,380,-1);
 
 
+
 }
 
 
@@ -175,6 +176,12 @@ void sendToStore() {
     //Executes the storing of MCQ's
     storeQuestion();
 
+    //To Purge the exsistting text from the textviews
+    gtk_text_buffer_set_text(question,"",-1);
+    gtk_text_buffer_set_text(optionA,"",-1);
+    gtk_text_buffer_set_text(optionB,"",-1);
+    gtk_text_buffer_set_text(optionC,"",-1);
+    gtk_text_buffer_set_text(optionD,"",-1);
 
 
 }
