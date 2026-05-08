@@ -123,20 +123,7 @@ void filepathPrompt() {
 
 }
 
-struct dataToStore {
 
-    char *question;
-
-    struct optionToStore {
-        char *A;
-        char *B;
-        char *C;
-        char *D;
-    }option;
-
-    int answer;
-    char *fileInfo;
-}dataToStore;
 
 
 void sendToStore() {
