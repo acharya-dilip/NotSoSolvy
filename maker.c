@@ -37,7 +37,9 @@ struct fileinfo {
     }widget;
 }file;
 DataToStore dataToStore;
+
 char fileInfo[256];
+
 void setFilePath(GObject *source, GAsyncResult *res, gpointer user_data) {
     //Fetches the file path
     GtkFileDialog *dialogNav = GTK_FILE_DIALOG(source);
@@ -139,23 +141,23 @@ void sendToStore() {
     strcpy(dataToStore.question,gtk_text_buffer_get_text(question,&start,&end,FALSE));
 
     GtkTextBuffer *optionA = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maker.option.A));
-    gtk_text_buffer_get_start_iter(question,&start);
-    gtk_text_buffer_get_end_iter(question,&end);
+    gtk_text_buffer_get_start_iter(optionA,&start);
+    gtk_text_buffer_get_end_iter(optionA,&end);
     strcpy(dataToStore.option.A,gtk_text_buffer_get_text(optionA,&start,&end,FALSE));
 
     GtkTextBuffer *optionB = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maker.option.B));
-    gtk_text_buffer_get_start_iter(question,&start);
-    gtk_text_buffer_get_end_iter(question,&end);
+    gtk_text_buffer_get_start_iter(optionB,&start);
+    gtk_text_buffer_get_end_iter(optionB,&end);
     strcpy(dataToStore.option.B,gtk_text_buffer_get_text(optionB,&start,&end,FALSE));
 
     GtkTextBuffer *optionC = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maker.option.C));
-    gtk_text_buffer_get_start_iter(question,&start);
-    gtk_text_buffer_get_end_iter(question,&end);
+    gtk_text_buffer_get_start_iter(optionC,&start);
+    gtk_text_buffer_get_end_iter(optionC,&end);
     strcpy(dataToStore.option.C,gtk_text_buffer_get_text(optionC,&start,&end,FALSE));
 
     GtkTextBuffer *optionD = gtk_text_view_get_buffer(GTK_TEXT_VIEW(maker.option.D));
-    gtk_text_buffer_get_start_iter(question,&start);
-    gtk_text_buffer_get_end_iter(question,&end);
+    gtk_text_buffer_get_start_iter(optionD,&start);
+    gtk_text_buffer_get_end_iter(optionD,&end);
     strcpy(dataToStore.option.D,gtk_text_buffer_get_text(optionD,&start,&end,FALSE));
 
 

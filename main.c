@@ -6,27 +6,25 @@
 struct windowSolver {
     GtkWidget *window;
     GtkWidget *textviewQuestion;
-    struct buttonOption {
+    struct option {
         GtkWidget *A;
         GtkWidget *B;
         GtkWidget *C;
         GtkWidget *D;
-    }buttonOption;
-}windowSolver;
+    }option;
+}solver;
 
 char *filePath;
 struct mcqData {
     char question[256];
-    struct option {
+    struct mcqoption {
         char A[128];
         char B[128];
         char C[128];
         char D[128];
     }option;
-
     int answer;
-
-};
+}mcq[100];
 
 void readData() {
 
@@ -51,14 +49,14 @@ void dialogNavToTest() {
 
 static void activate (GtkApplication *app,gpointer user_data) {
     // The window for the solver
-    windowSolver.window = gtk_application_window_new(app);
-    gtk_window_set_title(GTK_WINDOW(windowSolver.window),"NotSoSolvy");
-    gtk_window_set_default_size(GTK_WINDOW(windowSolver.window),800,800);
-    gtk_window_present(GTK_WINDOW(windowSolver.window));
+    solver.window = gtk_application_window_new(app);
+    gtk_window_set_title(GTK_WINDOW(solver.window),"NotSoSolvy");
+    gtk_window_set_default_size(GTK_WINDOW(solver.window),800,800);
+    gtk_window_present(GTK_WINDOW(solver.window));
 
     //Header bar for the buttons and stuff
     GtkWidget *headerbar = gtk_header_bar_new();
-    gtk_window_set_titlebar(GTK_WINDOW(windowSolver.window),headerbar);
+    gtk_window_set_titlebar(GTK_WINDOW(solver.window),headerbar);
 
     //Button to open the maker window (windowMaker)
     GtkWidget *buttonMaker = gtk_button_new_with_label("📄");
@@ -69,6 +67,49 @@ static void activate (GtkApplication *app,gpointer user_data) {
     GtkWidget *buttonBrowse = gtk_button_new_with_label("📂");
     gtk_header_bar_pack_start(GTK_HEADER_BAR(headerbar),buttonBrowse);
     g_signal_connect(buttonBrowse,"clicked",G_CALLBACK(dialogNavToTest),NULL);
+
+    //parent grid for the solver window
+    GtkWidget *gridParent = gtk_grid_new();
+    gtk_window_set_child(GTK_WINDOW(solver.window),gridParent);
+    gtk_widget_set_margin_top(gridParent,10);
+    gtk_widget_set_margin_bottom(gridParent,10);
+    gtk_widget_set_margin_start(gridParent,10);
+    gtk_widget_set_margin_end(gridParent,10);
+
+    //Text view for entering the question
+    solver.textviewQuestion = gtk_text_view_new();
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.textviewQuestion), GTK_WRAP_WORD);
+    gtk_grid_attach(GTK_GRID(gridParent),solver.textviewQuestion,0,0,12,4);
+    gtk_widget_set_size_request(solver.textviewQuestion,780,260);
+    gtk_widget_set_margin_bottom(solver.textviewQuestion,10);
+
+    //text views for entering options
+
+    solver.option.A = gtk_text_view_new();
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.textviewQuestion),GTK_WRAP_WORD);
+    gtk_grid_attach(GTK_GRID(gridParent),solver.option.A,0,5,6,4);
+    gtk_widget_set_size_request(solver.option.A,385,120);
+    gtk_widget_set_margin_bottom(solver.option.A,10);
+    gtk_widget_set_margin_end(solver.option.A,10);
+
+    solver.option.B = gtk_text_view_new();
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.textviewQuestion),GTK_WRAP_WORD);
+    gtk_grid_attach(GTK_GRID(gridParent),solver.option.B,6,5,6,4);
+    gtk_widget_set_size_request(solver.option.B,385,120);
+    gtk_widget_set_margin_bottom(solver.option.B,10);
+
+
+    solver.option.C = gtk_text_view_new();
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.textviewQuestion),GTK_WRAP_WORD);
+    gtk_grid_attach(GTK_GRID(gridParent),solver.option.C,0,10,6,4);
+    gtk_widget_set_size_request(solver.option.C,385,120);
+    gtk_widget_set_margin_end(solver.option.C,10);
+
+    solver.option.D = gtk_text_view_new();
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.textviewQuestion),GTK_WRAP_WORD);
+    gtk_grid_attach(GTK_GRID(gridParent),solver.option.D,6,10,6,4);
+    gtk_widget_set_size_request(solver.option.D,385,120);
+
 
 }
 
