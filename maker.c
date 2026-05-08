@@ -169,6 +169,18 @@ void sendToStore() {
     gtk_text_buffer_get_end_iter(question,&end);
     dataToStore.option.D=gtk_text_buffer_get_text(optionD,&start,&end,FALSE);
 
+
+    //Checks what the selected answer is
+    if (gtk_check_button_get_active(GTK_CHECK_BUTTON(radio.A))) {
+        dataToStore.answer = 1;
+    }else if (gtk_check_button_get_active(GTK_CHECK_BUTTON(radio.B))) {
+        dataToStore.answer = 2;
+    }else if (gtk_check_button_get_active(GTK_CHECK_BUTTON(radio.C))) {
+        dataToStore.answer = 3;
+    }else {
+        dataToStore.answer = 4;
+    }
+
 }
 
 
