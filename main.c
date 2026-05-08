@@ -15,12 +15,31 @@ struct windowSolver {
 }windowSolver;
 
 char *filePath;
+struct mcqData {
+    char question[256];
+    struct option {
+        char A[128];
+        char B[128];
+        char C[128];
+        char D[128];
+    }option;
+
+    int answer;
+
+};
+
+void readData() {
+
+}
+
+
 
 void on_file_selected(GObject *source, GAsyncResult *res, gpointer user_data) {
     GtkFileDialog *dialog = GTK_FILE_DIALOG(source);
     GFile *file = gtk_file_dialog_open_finish(dialog, res, NULL);
     filePath = g_file_get_path(file);
     //printf("FilePath = %s ",filePath);
+
 }
 
 void dialogNavToTest() {

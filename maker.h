@@ -20,9 +20,8 @@ typedef struct {
     }option;
 
     int answer;
-    char *fileInfo;
 }DataToStore;
-
+extern char fileInfo[256];
 extern DataToStore dataToStore;
 
 #endif //NOTSOSOLVY_MAKER_H

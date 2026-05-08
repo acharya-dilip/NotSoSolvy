@@ -36,9 +36,8 @@ struct fileinfo {
         GtkWidget *name;
     }widget;
 }file;
-
 DataToStore dataToStore;
-
+char fileInfo[256];
 void setFilePath(GObject *source, GAsyncResult *res, gpointer user_data) {
     //Fetches the file path
     GtkFileDialog *dialogNav = GTK_FILE_DIALOG(source);
@@ -172,7 +171,7 @@ void sendToStore() {
     }
 
     //Prepares the fileinfo for the file sppecs where the data is to be stored
-    snprintf(dataToStore.fileInfo,sizeof(dataToStore.fileInfo),"%s/%s.mcq",file.path,file.name);
+    snprintf(fileInfo,sizeof(fileInfo),"%s/%s.mcq",file.path,file.name);
     //Executes the storing of MCQ's
     storeQuestion();
 
