@@ -35,7 +35,7 @@ struct fileinfo {
     }widget;
 }file;
 
-
+DataToStore dataToStore;
 
 void setFilePath(GObject *source, GAsyncResult *res, gpointer user_data) {
     //Fetches the file path
@@ -123,20 +123,7 @@ void filepathPrompt() {
 
 }
 
-struct dataToStore {
 
-    char *question;
-
-    struct optionToStore {
-        char *A;
-        char *B;
-        char *C;
-        char *D;
-    }option;
-
-    int answer;
-    char *fileInfo;
-}dataToStore;
 
 
 void sendToStore() {
