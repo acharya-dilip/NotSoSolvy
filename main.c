@@ -77,7 +77,7 @@ void on_file_selected(GObject *source, GAsyncResult *res, gpointer user_data) {
     filePath = g_file_get_path(file);
     //printf("FilePath = %s ",filePath);
     readData();
-    loadMcq(0);
+    loadMcq();
 }
 
 void dialogNavToTest() {
@@ -87,9 +87,15 @@ void dialogNavToTest() {
 
 }
 
-void checkAns() {
+void checkAns(GtkButton *button,gpointer data) {
 
+    int givenAns = GPOINTER_TO_INT(data);
+    if (givenAns==mcq[activeMcq].answer) {
+        correctAns++;
+    }
 
+    //Now call the thing to load the next mcq
+    loadMcq();
 
 }
 
@@ -134,22 +140,26 @@ static void activate (GtkApplication *app,gpointer user_data) {
 
     solver.option.A = gtk_button_new();
     gtk_grid_attach(GTK_GRID(gridParent),solver.option.A,0,5,6,4);
+    g_signal_connect(solver.option.A,"clicked",G_CALLBACK(checkAns),GINT_TO_POINTER(1));
     gtk_widget_set_size_request(solver.option.A,385,120);
     gtk_widget_set_margin_bottom(solver.option.A,10);
     gtk_widget_set_margin_end(solver.option.A,10);
 
     solver.option.B = gtk_button_new();
     gtk_grid_attach(GTK_GRID(gridParent),solver.option.B,6,5,6,4);
+    g_signal_connect(solver.option.B,"clicked",G_CALLBACK(checkAns),GINT_TO_POINTER(2));
     gtk_widget_set_size_request(solver.option.B,385,120);
     gtk_widget_set_margin_bottom(solver.option.B,10);
 
 
     solver.option.C = gtk_button_new();
     gtk_grid_attach(GTK_GRID(gridParent),solver.option.C,0,10,6,4);
+    g_signal_connect(solver.option.C,"clicked",G_CALLBACK(checkAns),GINT_TO_POINTER(3));
     gtk_widget_set_size_request(solver.option.C,385,120);
     gtk_widget_set_margin_end(solver.option.C,10);
 
     solver.option.D = gtk_button_new();
+    g_signal_connect(solver.option.D,"clicked",G_CALLBACK(checkAns),GINT_TO_POINTER(4));
     gtk_grid_attach(GTK_GRID(gridParent),solver.option.D,6,10,6,4);
     gtk_widget_set_size_request(solver.option.D,385,120);
 
