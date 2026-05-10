@@ -119,7 +119,7 @@ void filepathPrompt() {
 
     //submit button for file info
     GtkWidget *buttonSubmit = gtk_button_new_with_label("Submit");
-    gtk_grid_attach(GTK_GRID(gridParent),buttonSubmit,0,3,8,1);
+    gtk_grid_attach(GTK_GRID(gridParent),buttonSubmit,0,3,8,    1);
     g_signal_connect(buttonSubmit,"clicked",G_CALLBACK(saveFileName),NULL);
     gtk_widget_set_size_request(buttonSubmit,380,-1);
 

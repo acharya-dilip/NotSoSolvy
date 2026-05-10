@@ -26,26 +26,36 @@ struct mcqData {
     int answer;
 }mcq[100];
 
+int totalMcq;
+int activeMcq=-1;
 
-void loadMcq(int i) {
+void loadMcq() {
+    //This keeps track of the questions
+    activeMcq++;
 
     GtkTextBuffer *temp;
+if (activeMcq<=totalMcq) {
 
     //loads mcq question
     temp = gtk_text_view_get_buffer(GTK_TEXT_VIEW(solver.textviewQuestion));
-    gtk_text_buffer_set_text(temp,mcq[i].question,-1);
+    gtk_text_buffer_set_text(temp,mcq[activeMcq].question,-1);
     //loads option A
     temp = gtk_text_view_get_buffer(GTK_TEXT_VIEW(solver.option.A));
-    gtk_text_buffer_set_text(temp,mcq[i].option.A,-1);
+    gtk_text_buffer_set_text(temp,mcq[activeMcq].option.A,-1);
     //loads option B
     temp = gtk_text_view_get_buffer(GTK_TEXT_VIEW(solver.option.B));
-    gtk_text_buffer_set_text(temp,mcq[i].option.B,-1);
+    gtk_text_buffer_set_text(temp,mcq[activeMcq].option.B,-1);
     //loads option C
     temp = gtk_text_view_get_buffer(GTK_TEXT_VIEW(solver.option.C));
-    gtk_text_buffer_set_text(temp,mcq[i].option.C,-1);
+    gtk_text_buffer_set_text(temp,mcq[activeMcq].option.C,-1);
     //loads option D
     temp = gtk_text_view_get_buffer(GTK_TEXT_VIEW(solver.option.D));
-    gtk_text_buffer_set_text(temp,mcq[i].option.D,-1);
+    gtk_text_buffer_set_text(temp,mcq[activeMcq].option.D,-1);
+
+}
+
+
+
 
 
 }
@@ -57,6 +67,7 @@ void readData() {
     int i = 0;
     while (fread(&mcq[i],sizeof(mcq[i]),1,file)==1) {
         i++;
+        totalMcq++;
     }
     fclose(file);
 }
