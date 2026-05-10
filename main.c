@@ -27,6 +27,7 @@ struct mcqData {
 }mcq[100];
 
 int totalMcq;
+int correctAns;
 int activeMcq=-1;
 
 void loadMcq() {
@@ -86,6 +87,11 @@ void dialogNavToTest() {
 
 }
 
+void checkAns() {
+
+
+
+}
 
 static void activate (GtkApplication *app,gpointer user_data) {
     // The window for the solver
