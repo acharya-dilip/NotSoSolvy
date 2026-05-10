@@ -27,7 +27,11 @@ struct mcqData {
 }mcq[100];
 
 void readData() {
-
+    FILE *file = fopen(filePath,"r");
+    int i = 0;
+    while (fread(&mcq[i],sizeof(mcq[i]),1,file)==1) {
+        i++;
+    }
 }
 
 
@@ -51,7 +55,7 @@ static void activate (GtkApplication *app,gpointer user_data) {
     // The window for the solver
     solver.window = gtk_application_window_new(app);
     gtk_window_set_title(GTK_WINDOW(solver.window),"NotSoSolvy");
-    gtk_window_set_default_size(GTK_WINDOW(solver.window),800,800);
+        gtk_window_set_default_size(GTK_WINDOW(solver.window),800,800);
     gtk_window_present(GTK_WINDOW(solver.window));
 
     //Header bar for the buttons and stuff
