@@ -29,7 +29,23 @@ struct mcqData {
 
 void loadMcq(int i) {
 
+    GtkTextBuffer *temp;
 
+    //loads mcq question
+    temp = gtk_text_view_get_buffer(GTK_TEXT_VIEW(solver.textviewQuestion));
+    gtk_text_buffer_set_text(temp,mcq[i].question,-1);
+    //loads option A
+    temp = gtk_text_view_get_buffer(GTK_TEXT_VIEW(solver.option.A));
+    gtk_text_buffer_set_text(temp,mcq[i].option.A,-1);
+    //loads option B
+    temp = gtk_text_view_get_buffer(GTK_TEXT_VIEW(solver.option.B));
+    gtk_text_buffer_set_text(temp,mcq[i].option.B,-1);
+    //loads option C
+    temp = gtk_text_view_get_buffer(GTK_TEXT_VIEW(solver.option.C));
+    gtk_text_buffer_set_text(temp,mcq[i].option.C,-1);
+    //loads option D
+    temp = gtk_text_view_get_buffer(GTK_TEXT_VIEW(solver.option.D));
+    gtk_text_buffer_set_text(temp,mcq[i].option.D,-1);
 
 
 }
