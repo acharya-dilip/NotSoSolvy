@@ -5,7 +5,7 @@
 
 struct windowSolver {
     GtkWidget *window;
-    GtkWidget *textviewQuestion;
+    GtkWidget *question;
     struct option {
         GtkWidget *A;
         GtkWidget *B;
@@ -37,20 +37,13 @@ void loadMcq() {
 if (activeMcq<=totalMcq) {
 
     //loads mcq question
-    temp = gtk_text_view_get_buffer(GTK_TEXT_VIEW(solver.textviewQuestion));
+    temp = gtk_text_view_get_buffer(GTK_TEXT_VIEW(solver.question));
     gtk_text_buffer_set_text(temp,mcq[activeMcq].question,-1);
-    //loads option A
-    temp = gtk_text_view_get_buffer(GTK_TEXT_VIEW(solver.option.A));
-    gtk_text_buffer_set_text(temp,mcq[activeMcq].option.A,-1);
-    //loads option B
-    temp = gtk_text_view_get_buffer(GTK_TEXT_VIEW(solver.option.B));
-    gtk_text_buffer_set_text(temp,mcq[activeMcq].option.B,-1);
-    //loads option C
-    temp = gtk_text_view_get_buffer(GTK_TEXT_VIEW(solver.option.C));
-    gtk_text_buffer_set_text(temp,mcq[activeMcq].option.C,-1);
-    //loads option D
-    temp = gtk_text_view_get_buffer(GTK_TEXT_VIEW(solver.option.D));
-    gtk_text_buffer_set_text(temp,mcq[activeMcq].option.D,-1);
+
+    gtk_button_set_label(GTK_BUTTON(solver.option.A),mcq[activeMcq].option.A);
+    gtk_button_set_label(GTK_BUTTON(solver.option.A),mcq[activeMcq].option.B);
+    gtk_button_set_label(GTK_BUTTON(solver.option.A),mcq[activeMcq].option.C);
+    gtk_button_set_label(GTK_BUTTON(solver.option.A),mcq[activeMcq].option.D);
 
 }else {
 
@@ -94,7 +87,6 @@ void dialogNavToTest() {
 }
 
 
-
 static void activate (GtkApplication *app,gpointer user_data) {
     // The window for the solver
     solver.window = gtk_application_window_new(app);
@@ -125,48 +117,35 @@ static void activate (GtkApplication *app,gpointer user_data) {
     gtk_widget_set_margin_end(gridParent,10);
 
     //Text view for entering the question
-    solver.textviewQuestion = gtk_text_view_new();
-    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.textviewQuestion), GTK_WRAP_WORD);
-    gtk_grid_attach(GTK_GRID(gridParent),solver.textviewQuestion,0,0,12,4);
-    gtk_widget_set_size_request(solver.textviewQuestion,780,260);
-    gtk_widget_set_margin_bottom(solver.textviewQuestion,10);
+    solver.question = gtk_text_view_new();
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.question), GTK_WRAP_WORD);
+    gtk_grid_attach(GTK_GRID(gridParent),solver.question,0,0,12,4);
+    gtk_text_view_set_editable(GTK_TEXT_VIEW(solver.question),FALSE); //locks the text view
+    gtk_widget_set_size_request(solver.question,780,260);
+    gtk_widget_set_margin_bottom(solver.question,10);
 
     //text views for entering options
 
-    solver.option.A = gtk_text_view_new();
-    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.option.A),GTK_WRAP_WORD);
+    solver.option.A = gtk_button_new();
     gtk_grid_attach(GTK_GRID(gridParent),solver.option.A,0,5,6,4);
     gtk_widget_set_size_request(solver.option.A,385,120);
     gtk_widget_set_margin_bottom(solver.option.A,10);
     gtk_widget_set_margin_end(solver.option.A,10);
 
-    solver.option.B = gtk_text_view_new();
-    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.option.B),GTK_WRAP_WORD);
+    solver.option.B = gtk_button_new();
     gtk_grid_attach(GTK_GRID(gridParent),solver.option.B,6,5,6,4);
     gtk_widget_set_size_request(solver.option.B,385,120);
     gtk_widget_set_margin_bottom(solver.option.B,10);
 
 
-    solver.option.C = gtk_text_view_new();
-    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.option.C),GTK_WRAP_WORD);
+    solver.option.C = gtk_button_new();
     gtk_grid_attach(GTK_GRID(gridParent),solver.option.C,0,10,6,4);
     gtk_widget_set_size_request(solver.option.C,385,120);
     gtk_widget_set_margin_end(solver.option.C,10);
 
-    solver.option.D = gtk_text_view_new();
-    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.option.D),GTK_WRAP_WORD);
+    solver.option.D = gtk_button_new();
     gtk_grid_attach(GTK_GRID(gridParent),solver.option.D,6,10,6,4);
     gtk_widget_set_size_request(solver.option.D,385,120);
-
-    //Locking all the text views
-    gtk_text_view_set_editable(GTK_TEXT_VIEW(solver.textviewQuestion),FALSE);
-    gtk_text_view_set_editable(GTK_TEXT_VIEW(solver.option.A),FALSE);
-    gtk_text_view_set_editable(GTK_TEXT_VIEW(solver.option.B),FALSE);
-    gtk_text_view_set_editable(GTK_TEXT_VIEW(solver.option.C),FALSE);
-    gtk_text_view_set_editable(GTK_TEXT_VIEW(solver.option.D),FALSE);
-
-
-
 
 }
 
