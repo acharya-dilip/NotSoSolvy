@@ -26,12 +26,23 @@ struct mcqData {
     int answer;
 }mcq[100];
 
+
+void loadMcq(int i) {
+
+
+
+
+}
+
+
+
 void readData() {
     FILE *file = fopen(filePath,"r");
     int i = 0;
     while (fread(&mcq[i],sizeof(mcq[i]),1,file)==1) {
         i++;
     }
+    fclose(file);
 }
 
 
@@ -41,7 +52,8 @@ void on_file_selected(GObject *source, GAsyncResult *res, gpointer user_data) {
     GFile *file = gtk_file_dialog_open_finish(dialog, res, NULL);
     filePath = g_file_get_path(file);
     //printf("FilePath = %s ",filePath);
-
+    readData();
+    loadMcq(0);
 }
 
 void dialogNavToTest() {
@@ -50,6 +62,8 @@ void dialogNavToTest() {
         gtk_file_dialog_open(dialog, NULL, NULL, on_file_selected, NULL);
 
 }
+
+
 
 static void activate (GtkApplication *app,gpointer user_data) {
     // The window for the solver
