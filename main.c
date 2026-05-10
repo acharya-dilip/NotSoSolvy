@@ -52,8 +52,11 @@ if (activeMcq<=totalMcq) {
     temp = gtk_text_view_get_buffer(GTK_TEXT_VIEW(solver.option.D));
     gtk_text_buffer_set_text(temp,mcq[activeMcq].option.D,-1);
 
-}
+}else {
 
+    //add a scoreboard thingy
+
+}
 
 
 
@@ -131,29 +134,38 @@ static void activate (GtkApplication *app,gpointer user_data) {
     //text views for entering options
 
     solver.option.A = gtk_text_view_new();
-    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.textviewQuestion),GTK_WRAP_WORD);
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.option.A),GTK_WRAP_WORD);
     gtk_grid_attach(GTK_GRID(gridParent),solver.option.A,0,5,6,4);
     gtk_widget_set_size_request(solver.option.A,385,120);
     gtk_widget_set_margin_bottom(solver.option.A,10);
     gtk_widget_set_margin_end(solver.option.A,10);
 
     solver.option.B = gtk_text_view_new();
-    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.textviewQuestion),GTK_WRAP_WORD);
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.option.B),GTK_WRAP_WORD);
     gtk_grid_attach(GTK_GRID(gridParent),solver.option.B,6,5,6,4);
     gtk_widget_set_size_request(solver.option.B,385,120);
     gtk_widget_set_margin_bottom(solver.option.B,10);
 
 
     solver.option.C = gtk_text_view_new();
-    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.textviewQuestion),GTK_WRAP_WORD);
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.option.C),GTK_WRAP_WORD);
     gtk_grid_attach(GTK_GRID(gridParent),solver.option.C,0,10,6,4);
     gtk_widget_set_size_request(solver.option.C,385,120);
     gtk_widget_set_margin_end(solver.option.C,10);
 
     solver.option.D = gtk_text_view_new();
-    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.textviewQuestion),GTK_WRAP_WORD);
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(solver.option.D),GTK_WRAP_WORD);
     gtk_grid_attach(GTK_GRID(gridParent),solver.option.D,6,10,6,4);
     gtk_widget_set_size_request(solver.option.D,385,120);
+
+    //Locking all the text views
+    gtk_text_view_set_editable(GTK_TEXT_VIEW(solver.textviewQuestion),FALSE);
+    gtk_text_view_set_editable(GTK_TEXT_VIEW(solver.option.A),FALSE);
+    gtk_text_view_set_editable(GTK_TEXT_VIEW(solver.option.B),FALSE);
+    gtk_text_view_set_editable(GTK_TEXT_VIEW(solver.option.C),FALSE);
+    gtk_text_view_set_editable(GTK_TEXT_VIEW(solver.option.D),FALSE);
+
+
 
 
 }
